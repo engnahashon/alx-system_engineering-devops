@@ -1,1 +1,1 @@
-Learnig shell basics
+Shell assignment
