@@ -1,0 +1,7 @@
+#!/bin/bash
+
+interfaces=$(ifconfig | grep -o '^[^ ]*')
+for i in $interfaces; do
+  ip=$(ifconfig $i | grep 'inet ' | awk '{print $2}')
+  
+done

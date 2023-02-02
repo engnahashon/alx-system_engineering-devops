@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Check if running as root
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+# Check if Docker is installed
+if ! [ -x "$(command -v docker)" ]; then
+   echo "Docker is not installed. Please install Docker first." 1>&2
+   exit 1
+fi
+
+# Check if the argument is given
+if [ $# -eq 0 ]; then
+   echo "Usage: $0 {IP_ADDRESS}"
+   exit 1
+fi
+
+# Check if the argument is a valid IP address
+if ! echo "$1" | grep -Eq '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$'; then
+   echo "Invalid IP address"
+   exit 1
+fi
+
+# Create a Docker container for the DNS checker
+docker run --name dns_checker -d alpine nslookup localhost 127.0.0.2
+
+# Check if localhost resolves to 127.0.0.2
+if ! docker exec dns_checker nslookup localhost | grep -q 'Address: 127.0.0.2'; then
+   echo "localhost does not resolve to 127.0.0.2"
+   exit 1
+fi
+
+# Check if facebook.com resolves to 8.8.8.8
+if ! docker exec dns_checker nslookup facebook.com | grep -q 'Address: 8.8.8.8'; then
+   echo "facebook.com does not resolve to 8.8.8.8"
+   exit 1
+fi
+
+# Everything is okay, print success message
+echo "DNS configuration is successful"
