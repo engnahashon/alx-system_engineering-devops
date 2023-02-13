@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 # displays the content of the file /etc/passwd
 
-while read line
+while IFS=":" read -a fields
 do
-    fields=($(echo $line | tr ":" " "))
     username=${fields[0]}
     userid=${fields[2]}
     homedir=${fields[5]}
     echo "Username: $username"
     echo "Username: $userid"
     echo "Home Directory: $homedir"
-    echo
+    echo ""
 done < /etc/passwd
