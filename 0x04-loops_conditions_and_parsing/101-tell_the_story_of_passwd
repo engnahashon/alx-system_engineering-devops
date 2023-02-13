@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# displays the content of the file /etc/passwd, using the while loop + IFS.
 # Set IFS to ":" to split fields by ":"
 IFS=":"
 
