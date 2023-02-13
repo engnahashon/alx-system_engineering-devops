@@ -3,5 +3,6 @@
 
 for file in *
 do
-    echo "$file"
+    name=${file##*-}
+    echo "$name"
 done
