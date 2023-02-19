@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
 # displays all active IPv4 IPs on the machine it’s executed on.
 
-interfaces=$(ifconfig | grep -o '^[^ ]*')
-for i in $interfaces; do
-  ip=$(ifconfig $i | grep 'inet ' | awk '{print $2}')
-  
-done
+hostname -I | cut -d ' ' -f 1 ; hostname -i
