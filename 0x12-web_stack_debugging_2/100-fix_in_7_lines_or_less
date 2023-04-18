@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # task #1, make your fix short and sweet.
-listen_addresses=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | cut -d'/' -f1)
-sed -i "s/user .*/user "nginx" "nginx";/" /etc/nginx/nginx.conf
-sed -i "s/listen .*/listen $listen_addresses:"8080";/" /etc/nginx/conf.d/default.conf
+echo "user nginx nginx" > /etc/nginx/nginx.conf
+port="8080"
+ip=$(hostname -I | awk '{print $1}')
+echo "listen $ip:$port" > /etc/nginx/conf.d/default.conf
 sudo -u nginx service nginx start
