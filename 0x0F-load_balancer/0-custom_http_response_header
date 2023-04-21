@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# A script that configures a brand new Ubuntu machine to the requirements asked in this task.
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+sudo echo "server {
+    listen 80;
+    root /var/www/html;
+    index index.html;
+    add_header X-Served-By \$hostname;
+    }
+" | sudo tee /etc/nginx/sites-available/default
+
+sudo service nginx restart
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
