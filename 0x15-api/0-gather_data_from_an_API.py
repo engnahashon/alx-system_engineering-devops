@@ -5,9 +5,7 @@ import sys
 
 
 if __name__ == "__main__":
-    """Python script that, using this REST API, for a given employee ID,
-    returns information about his/her TODO list progress.
-    """
+    """Python script that, using this REST API, for a given employee ID"""
     employee_id = sys.argv[1]
     user_api_url = "https://jsonplaceholder.typicode.com/users/{}"\
         .format(employee_id)
