@@ -30,6 +30,6 @@ if __name__ == "__main__":
         writer.writeheader()
         for todo in employee_todos:
             writer.writerow({"USER_ID": employee_id,
-                            "USERNAME": employee_data["username"],
-			    "TASK_COMPLETED_STATUS": todo["completed"],
-			    "TASK_TITLE": todo["title"]})
+                             "USERNAME": employee_data["username"],
+                             "TASK_COMPLETED_STATUS": todo["completed"],
+                            "TASK_TITLE": todo["title"]})
