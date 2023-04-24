@@ -25,7 +25,7 @@ if __name__ == "__main__":
     filename = "{}.csv".format(employee_id)
     with open(filename, mode="w", newline="") as csv_file:
         field = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-        writer = csv.DictWriter(csv_file, fieldnames=field)
+        writer = csv.DictWriter(csv_file, fieldnames=field,quotechar='"',quoting=csv.QUOTE_ALL)
 
         for todo in employee_todos:
             writer.writerow({"USER_ID": employee_id,
