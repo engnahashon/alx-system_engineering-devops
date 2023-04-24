@@ -7,26 +7,28 @@ import sys
 
 if __name__ == "__main__":
     """Python script that, using this REST API, for a given employee ID"""
-    employee_id = sys.argv[1]
-    user_api_url = "https://jsonplaceholder.typicode.com/users/{}"\
-        .format(employee_id)
-    todos_api_url = "https://jsonplaceholder.typicode.com/todos?userId={}"\
-        .format(employee_id)
+    all_employees = []
+    for employee_id in range(1, 11):
+        user_api_url = "https://jsonplaceholder.typicode.com/users/{}"\
+            .format(employee_id)
+        todos_api_url = "https://jsonplaceholder.typicode.com/todos?userId={}"\
+            .format(employee_id)
 
-    response = requests.get(user_api_url)
-    employee_data = response.json()
+        response = requests.get(user_api_url)
+        employee_data = response.json()
 
-    response = requests.get(todos_api_url)
-    employee_todos = response.json()
+        response = requests.get(todos_api_url)
+        employee_todos = response.json()
 
-    tasks = []
-    for todo in employee_todos:
-        task = {"task": todo['title'],
-                "completed": todo['completed'],
-                "username": employee_data['username']}
-        tasks.append(task)
-    employee_tasks = {employee_id: tasks}
+        tasks = []
+        for todo in employee_todos:
+            task = {"task": todo['title'],
+                    "completed": todo['completed'],
+                    "username": employee_data['username']}
+            tasks.append(task)
+        employee_tasks = {employee_id: tasks}
+        all_employees.append(employee_tasks)
 
-    filename = "{}.json".format(employee_id)
+    filename = "todo_all_employees.json"
     with open(filename, "w") as json_file:
-        json.dump(employee_tasks, json_file)
+        json.dump(all_employees, json_file)
