@@ -7,7 +7,7 @@ import sys
 
 if __name__ == "__main__":
     """Python script that, using this REST API, for a given employee ID"""
-    all_employees = []
+    all_employees = {}
     for employee_id in range(1, 11):
         user_api_url = "https://jsonplaceholder.typicode.com/users/{}"\
             .format(employee_id)
@@ -26,8 +26,7 @@ if __name__ == "__main__":
                     "completed": todo['completed'],
                     "username": employee_data['username']}
             tasks.append(task)
-        employee_tasks = {employee_id: tasks}
-        all_employees.append(employee_tasks)
+        all_employees[str(employee_id)] = tasks
 
     filename = "todo_all_employees.json"
     with open(filename, "w") as json_file:
