@@ -21,7 +21,7 @@ if __name__ == "__main__":
     total = len(employee_todos)
     complete = len([task for task in employee_todos if task["completed"]])
 
-    print("Employee {} is done with tasks({}/{})"
+    print("Employee {} is done with tasks({}/{}):"
           .format(employee_data["name"], complete, total))
     for todo in employee_todos:
         if todo["completed"]:
