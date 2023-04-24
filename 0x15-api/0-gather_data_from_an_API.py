@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-import sys
-import requests
-
-
 """Python script that, using this REST API, for a given employee ID,
 returns information about his/her TODO list progress.
 """
+
+
+import requests
+import sys
 
 employee_id = sys.argv[1]
 user_api_url = "https://jsonplaceholder.typicode.com/users/{}"\
