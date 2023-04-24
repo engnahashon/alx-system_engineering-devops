@@ -25,4 +25,4 @@ if __name__ == "__main__":
           .format(employee_data["name"], complete, total))
     for todo in employee_todos:
         if todo["completed"]:
-            print("\t{}".format(todo["title"]))
+            print("\t {}".format(todo["title"]))
