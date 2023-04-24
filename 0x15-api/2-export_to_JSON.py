@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Gathering data from web using restful api"""
 import json
-import sys
 import requests
+import sys
 
 
 if __name__ == "__main__":
