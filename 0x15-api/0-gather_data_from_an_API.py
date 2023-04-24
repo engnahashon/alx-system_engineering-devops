@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Gathering data from web
+"""Gathering data from web using restful api"""
 import requests
 import sys
 
