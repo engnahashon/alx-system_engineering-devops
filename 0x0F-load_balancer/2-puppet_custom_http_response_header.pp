@@ -1,3 +1,4 @@
+#Automate install and conf of nginx server
 class nginx_setup {
   exec { 'update':
     command => '/usr/bin/apt-get -y update',
