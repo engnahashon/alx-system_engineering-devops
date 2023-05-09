@@ -10,7 +10,7 @@ def number_of_subscribers(subreddit):
         AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 \
         Safari/537.36'}
     req = requests.get(URL, headers=USERAGENT)
-    if req.status_code is not 200:
+    if req.status_code != 200:
         return (0)
     jreq = req.json()
     return (jreq['data']['subscribers'])
