@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""returns the number of subscribers (not active users, total subscribers)"""
 import requests
 
 
