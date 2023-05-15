@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Install and configure HAproxy on your lb-01 server.
 
-sudo bash -c 'cat <<EOF > ./haproxy.cfg
+cat <<EOF | sudo tee -a ./haproxy.cfg > /dev/null
 frontend http_front
     bind *:80
     mode http
@@ -12,5 +12,4 @@ backend http_back
     balance roundrobin
     server 112184-web-01 34.229.184.165:80 check
     server 112184-web-02 100.25.34.51:80 check
-EOF'
-
+EOF
