@@ -1,9 +1,13 @@
-#Web stack debuggin 4, change limit
-exec { 'change limit to 2000':
-  path    => '/bin',
-  command => 'sed -i "s/15/2000" /etc/default/nginx'
+# Increases the amount of traffic an Nginx server can handle.
+
+# Increase the ULIMIT of the default file
+exec { 'fix--for-nginx':
+  command => 'sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/'
 }
 
--> exec { 'restart nginx':
-  command => '/usr/sbin/service nginx restart'
+# Restart Nginx
+-> exec { 'nginx-restart':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
